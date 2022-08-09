@@ -49,23 +49,24 @@ contract OrbofiNFT is ERC721Enumerable, Ownable {
 	 * Mints some quantity of NFTs
 	 * @param quantity of NFTs to mint
 	 * @param receiver address that will receive NFT
-	 * @notice Can mint not more than 20 NFTs by account
+     * @param amount to pay for minting  NFT
+	 * @notice Can not mint  more than 20 NFTs by account
 	 */
-    function mint( uint256 quantity, address receiver) payable public  {
-        uint256 tokenId = currentTokenId.current();
-        require(tokenId <= LAUNCH_MAX_SUPPLY, "Max supply reached");
+    function mint( uint256 quantity, address receiver, uint256 amount) payable public  {
+        
+        require(currentTokenId.current() <= LAUNCH_MAX_SUPPLY, "Max supply reached");
         require(balanceOf(receiver) + quantity <= 20, 'You are allowed to get only 20 NFTs');
-        require(msg.value >= quantity * MINT_PRICE, "Not enough amount to mint");
+        require(amount >= quantity * MINT_PRICE, "Not enough amount to mint");
         
         
         IERC20(underlying).transferFrom(msg.sender, address(this), quantity * MINT_PRICE);
 
         for (uint256 i = 0; i < quantity; i++) {
 
-            _mint(receiver, tokenId);
+            _mint(receiver, currentTokenId.current());
 
             unchecked {
-                currentTokenId.increment();
+                 currentTokenId.increment();
             }
 
         }    
