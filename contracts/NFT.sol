@@ -17,7 +17,7 @@ contract OrbofiNFT is ERC721Enumerable, Ownable {
     string public baseURI;
     string public suffix;
 
-    // must impl this in your NFT contract, and make it public
+    
     uint256 public LAUNCH_MAX_SUPPLY;    // max launch supply
     uint256 public LAUNCH_SUPPLY;        // current launch supply
     
@@ -74,8 +74,7 @@ contract OrbofiNFT is ERC721Enumerable, Ownable {
   }
 
 
- 
-    
+
     function setMintPrice(uint256 amount) external onlyOwner  {
         MINT_PRICE = amount;
     }

@@ -57,8 +57,6 @@ def test_can_mint_only_20(test_token, orbofi_nft):
     amount = mint_price * quantity
     
     
-    #deployer erc20 balance before mint
-    
     test_erc_20.approve(nft_contract, amount, {"from": deployer})
 
     with reverts("You are allowed to get only 20 NFTs"):
