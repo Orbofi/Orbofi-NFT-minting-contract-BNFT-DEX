@@ -1,0 +1,33 @@
+dependencies:
+  - "OpenZeppelin/openzeppelin-contracts@4.5.0"
+  - "smartcontractkit/chainlink-brownie-contracts@0.4.0"
+
+compiler:
+  solc:
+    remappings:
+      - "@openzeppelin=OpenZeppelin/openzeppelin-contracts@4.5.0"
+      - "@chainlink=smartcontractkit/chainlink-brownie-contracts@0.4.0"
+
+networks:
+  development:
+    verify: False
+    launchpad: "0xd73b53cBe6A5FE32Ae4aE475d4EA9307bD7aAAfA"
+  
+  rinkeby:
+    verify: True
+    launchpad: "0xd73b53cBe6A5FE32Ae4aE475d4EA9307bD7aAAfA"
+  
+  bsc-test:
+    verify: True
+    launchpad: "0x64eF5f4145A77EA9091DA00eb5f5B865eB27B5D2"
+
+  bsc-main:
+    verify: True
+    launchpad: "0x190449C9586a73dA40A839e875Ff55c853dBc2f8"
+    
+
+
+
+wallets:
+    from_key: ${PRIVATE_KEY}
+
