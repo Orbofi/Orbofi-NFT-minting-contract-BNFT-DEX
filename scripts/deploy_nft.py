@@ -2,15 +2,15 @@ from brownie import Contract, accounts, OrbofiNFT, MyToken, config, network
 from scripts.helpful_scripts import get_account
 
 
-def deploy_erc_token():
-    deployer = get_account()
+# def deploy_erc_token():
+#     deployer = get_account()
 
-    if len(MyToken) > 0:
-        return MyToken[-1]
+#     if len(MyToken) > 0:
+#         return MyToken[-1]
     
-    else:
-        contract = MyToken.deploy({"from": deployer})
-        return contract
+#     else:
+#         contract = MyToken.deploy({"from": deployer})
+#         return contract
 
 
 
@@ -28,8 +28,6 @@ def deploy_nft():
     # Deploy the NFT contract
     contract = OrbofiNFT.deploy(name, symbol, base_uri, suffix, launchpad, max_supply, {"from": deployer}, publish_source=config["networks"][network.show_active()]["verify"])
  
-
-
     return contract
 
 def main():

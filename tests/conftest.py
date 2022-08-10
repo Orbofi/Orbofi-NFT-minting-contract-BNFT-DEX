@@ -5,7 +5,7 @@ import pytest
 
 @pytest.fixture(scope="module", autouse=True)
 def test_token():
-    deployer = accounts[0]
+    deployer = accounts[1]
     test_token = MyToken.deploy({"from": deployer})
     return test_token
 

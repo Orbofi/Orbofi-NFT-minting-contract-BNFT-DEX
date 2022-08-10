@@ -111,12 +111,12 @@ contract OrbofiNFT is ERC721Enumerable, Ownable {
 	}
 
 	/**
-	 * Withdraw ETH from contract to owner address
+	 * Withdraw BNB from contract to owner address
 	 * @notice only owner can withdraw
 	 */
-	function withdrawETH() external onlyOwner {
+	function withdrawBNB() external onlyOwner {
 		(bool sent, ) = msg.sender.call{value: address(this).balance}('');
-		require(sent, 'Failed to withdraw ETH');
+		require(sent, 'Failed to withdraw BNB');
 	}
 
 
