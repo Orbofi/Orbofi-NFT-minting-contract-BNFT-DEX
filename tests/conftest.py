@@ -11,7 +11,7 @@ def test_token():
 
 
 @pytest.fixture(scope="module", autouse=True)
-def orbofi_nft(test_token):
+def orbofi_nft():
     """
     Deploys test ERC20 (BUSD) and NFT
     """
@@ -25,7 +25,7 @@ def orbofi_nft(test_token):
     max_supply = 15_000
     
 
-    contract = OrbofiNFT.deploy(name, symbol, base_uri, suffix, launchpad, max_supply, test_token, {"from": deployer})
+    contract = OrbofiNFT.deploy(name, symbol, base_uri, suffix, launchpad, max_supply, {"from": deployer})
 
     return contract
  

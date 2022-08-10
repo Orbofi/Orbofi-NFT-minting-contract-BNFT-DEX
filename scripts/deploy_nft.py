@@ -22,11 +22,11 @@ def deploy_nft():
     suffix = "XD"
     launchpad = config["networks"][network.show_active()]["launchpad"]
     max_supply = 15_000
-    underlying = deploy_erc_token()
+    # underlying = deploy_erc_token()
 
 
     # Deploy the NFT contract
-    contract = OrbofiNFT.deploy(name, symbol, base_uri, suffix, launchpad, max_supply, underlying, {"from": deployer}, publish_source=config["networks"][network.show_active()]["verify"])
+    contract = OrbofiNFT.deploy(name, symbol, base_uri, suffix, launchpad, max_supply, {"from": deployer}, publish_source=config["networks"][network.show_active()]["verify"])
  
 
 

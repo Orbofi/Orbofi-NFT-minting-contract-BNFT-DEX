@@ -23,10 +23,8 @@ contract OrbofiNFT is ERC721Enumerable, Ownable {
     
     address public LAUNCHPAD;
 
-    // erc20 token that the contract accepts 
-    address public underlying;
-
-    uint256 public MINT_PRICE = 100 * 10**18; //100 BUSD per token
+    
+    uint256 public MINT_PRICE = 0.3 ether; // ~100 USD per token
     Counters.Counter private currentTokenId;
 
     modifier onlyLaunchpad() {
@@ -37,29 +35,27 @@ contract OrbofiNFT is ERC721Enumerable, Ownable {
 
     
 
-    constructor(string memory name_, string memory symbol_, string memory baseURI_, string memory suffix_, address launchpad, uint256 maxSupply, address _underlying) ERC721(name_, symbol_) {
+    constructor(string memory name_, string memory symbol_, string memory baseURI_, string memory suffix_, address launchpad, uint256 maxSupply) ERC721(name_, symbol_) {
         baseURI = baseURI_;
         suffix = suffix_;
         LAUNCHPAD = launchpad;
         LAUNCH_MAX_SUPPLY = maxSupply;
-        underlying = _underlying;
+        
     }
 
     /**
 	 * Mints some quantity of NFTs
 	 * @param quantity of NFTs to mint
 	 * @param receiver address that will receive NFT
-     * @param amount to pay for minting  NFT
 	 * @notice Can not mint  more than 20 NFTs by account
 	 */
-    function mint( uint256 quantity, address receiver, uint256 amount) payable public  {
+    function mint( uint256 quantity, address receiver) payable public  {
         
         require(currentTokenId.current() <= LAUNCH_MAX_SUPPLY, "Max supply reached");
         require(balanceOf(receiver) + quantity <= 20, 'You are allowed to get only 20 NFTs');
-        require(amount >= quantity * MINT_PRICE, "Not enough amount to mint");
+        require(msg.value >= quantity * MINT_PRICE, "Not enough amount to mint");
         
         
-        IERC20(underlying).transferFrom(msg.sender, address(this), quantity * MINT_PRICE);
 
         for (uint256 i = 0; i < quantity; i++) {
 
